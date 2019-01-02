@@ -3,17 +3,42 @@ import React, {Component, Fragment} from 'react';
 import './App.css';
 import {CustomSlider} from "./CustomSlider";
 
+const YEARLY_INTEREST_RATE = 0.045;
+
 class App extends Component {
 
     state = {
         amount: 1000,
-        period: 6
+        period: 12
     };
 
     pluralize = (count, singular, plural) => {
         return (count === 1) ? singular : plural;
     };
 
+    /*
+    * P = (r * (PV)) / (1 - (1 + r)^(-n))
+    *
+    * P - Payment
+    * PV - Present Value
+    * r - rate per period
+    * n - number of periods
+    * */
+    monthlyPayments = (pv, n) => {
+        let r = YEARLY_INTEREST_RATE / 12;
+
+        let p = (r * pv) / (1 - Math.pow((1 + r), (-n)));
+
+        return p;
+    };
+
+    totalWithInterest = (pv, n) => {
+        return this.monthlyPayments(pv, n) * n;
+    };
+
+    interestPayments = (pv, n) => {
+      return this.totalWithInterest(pv, n) - this.state.amount;
+    };
 
     render() {
         return (
@@ -36,6 +61,10 @@ class App extends Component {
                               onUpdate={(values) => {
                                   this.setState({period: values[0]})
                               }}/>
+
+                <div>Ikmēneša maksājums: {this.monthlyPayments(this.state.amount, this.state.period).toFixed(2)} EUR</div>
+                <div>Galā samaksāsi: {this.totalWithInterest(this.state.amount, this.state.period).toFixed(2)} EUR</div>
+                <div>Es nopelnīšu {this.interestPayments(this.state.amount, this.state.period).toFixed(2)} EUR</div>
             </div>
         );
     }
