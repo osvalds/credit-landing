@@ -1,0 +1,50 @@
+@import "styles/reset";
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  color: #373945;
+  display: grid;
+  margin: 0 2%;
+}
+
+#root {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.footer {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  text-align: center;
+  font-size: 12px;
+}
+
+.header {
+  text-align: center;
+  border: 1px solid grey;
+  margin: 5px auto;
+  width: 100%;
+  padding: 10px;
+  max-width: 200px;
+
+  &__osvalds {
+    font-weight: 700;
+  }
+
+  &__loan {
+    font-weight: 100;
+  }
+}

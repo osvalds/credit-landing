@@ -23,9 +23,9 @@ export function Handle({
             }}
             {...getHandleProps(id)}
         >
-            <div style={{fontFamily: 'Roboto', fontSize: 11, marginTop: -35}}>
-                {value}
-            </div>
+            {/*<div style={{fontFamily: 'Roboto', fontSize: 11, marginTop: -35}}>*/}
+                {/*{value}*/}
+            {/*</div>*/}
         </div>
     )
 }
