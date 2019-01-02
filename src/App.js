@@ -1,28 +1,44 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component, Fragment} from 'react';
+
 import './App.css';
+import {CustomSlider} from "./CustomSlider";
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+
+    state = {
+        amount: 1000,
+        period: 6
+    };
+
+    pluralize = (count, singular, plural) => {
+        return (count === 1) ? singular : plural;
+    };
+
+
+    render() {
+        return (
+            <div className="main">
+                <div>
+                    Es vēlos saņemt {this.state.amount} EUR
+                </div>
+                <CustomSlider domain={[500, 8000]}
+                              step={100}
+                              values={[this.state.amount]}
+                              onUpdate={(values) => {
+                                  this.setState({amount: values[0]})
+                              }}/>
+                <div>
+                    Uz {this.state.period} {this.pluralize(this.state.period, "mēnesi", "mēnešiem")}
+                </div>
+                <CustomSlider domain={[1, 24]}
+                              step={1}
+                              values={[this.state.period]}
+                              onUpdate={(values) => {
+                                  this.setState({period: values[0]})
+                              }}/>
+            </div>
+        );
+    }
 }
 
 export default App;
