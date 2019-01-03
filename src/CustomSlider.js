@@ -6,17 +6,17 @@ import {Track} from "./Track";
 const sliderStyle = {  // Give the slider some width
     position: 'relative',
     width: '100%',
-    height: 80,
-    border: '1px solid steelblue',
+    padding: '0 5px',
+    height: 40,
 };
 
 const railStyle = {
     position: 'absolute',
     width: '100%',
     height: 10,
-    marginTop: 35,
-    borderRadius: 5,
-    backgroundColor: '#8B9CB6',
+    marginTop: 15,
+    borderRadius: 2,
+    backgroundColor: '#2AB7CA',
 };
 
 export function CustomSlider({domain, step, values, onUpdate}) {
@@ -28,7 +28,6 @@ export function CustomSlider({domain, step, values, onUpdate}) {
             mode={2}
             values={values}
             onUpdate={onUpdate}>
-
             <Rail>
                 {({getRailProps}) => (
                     <div style={railStyle} {...getRailProps()} />

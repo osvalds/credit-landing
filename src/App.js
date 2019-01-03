@@ -45,11 +45,11 @@ class App extends Component {
             <Fragment>
                 <div className="main">
                     <header className="header">
-                        <span className="header__osvalds">osvalds.</span>
-                        <span className="header__loan">loan</span>
+                        <span className="header__osvalds">osvalds</span>
+                        <span className="header__loan">.loan</span>
                     </header>
-                    <div>
-                        Es vēlos saņemt {this.state.amount} EUR
+                    <div className="loan-header">
+                        Es vēlos saņemt <span className="loan-header__special">{this.state.amount} EUR</span>
                     </div>
                     <CustomSlider domain={[500, 8000]}
                                   step={100}
@@ -57,8 +57,9 @@ class App extends Component {
                                   onUpdate={(values) => {
                                       this.setState({amount: values[0]})
                                   }}/>
-                    <div>
-                        Uz {this.state.period} {this.pluralize(this.state.period, "mēnesi", "mēnešiem")}
+                    <div className="loan-header">
+                        Uz <span
+                        className="loan-header__special">{this.state.period} </span>{this.pluralize(this.state.period, "mēnesi", "mēnešiem")}
                     </div>
                     <CustomSlider domain={[1, 24]}
                                   step={1}
@@ -66,16 +67,41 @@ class App extends Component {
                                   onUpdate={(values) => {
                                       this.setState({period: values[0]})
                                   }}/>
-
-                    <div>Ikmēneša
-                        maksājums: {this.monthlyPayments(this.state.amount, this.state.period).toFixed(2)} EUR
+                    <div className="loan-wrapper">
+                        <div className="loan-description">
+                            <div className="loan-description__left">
+                                Ikmēneša maksājums:
+                            </div>
+                            <div className="loan-description__right">
+                                {this.monthlyPayments(this.state.amount, this.state.period).toFixed(2)} EUR
+                            </div>
+                        </div>
+                        <div className="loan-description">
+                            <div className="loan-description__left">
+                                Galā samaksāsi:
+                            </div>
+                            <div className="loan-description__right">
+                                {this.totalWithInterest(this.state.amount, this.state.period).toFixed(2)} EUR
+                            </div>
+                        </div>
+                        <div className="loan-description">
+                            <div className="loan-description__left">
+                                Es nopelnīšu
+                            </div>
+                            <div className="loan-description__right">
+                                {this.interestPayments(this.state.amount, this.state.period).toFixed(2)} EUR
+                            </div>
+                        </div>
                     </div>
-                    <div>Galā samaksāsi: {this.totalWithInterest(this.state.amount, this.state.period).toFixed(2)} EUR
+                    <div className="hero">
+                        <img src="/img/hero.jpg" alt="Piķis nav problēma" className="hero__image"/>
                     </div>
-                    <div>Es nopelnīšu {this.interestPayments(this.state.amount, this.state.period).toFixed(2)} EUR</div>
                 </div>
                 <footer className="footer">
-                    Lapā atrodamajam saturam ir informatīva nozīme. Datus nevāciju, cookies nevajag.
+                    <a className="footer__link"
+                        href="https://www.youtube.com/watch?v=UROLAsyc_KU">
+                        💰💰💰💰
+                    </a>
                 </footer>
             </Fragment>
         );

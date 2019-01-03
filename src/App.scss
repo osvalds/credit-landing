@@ -17,6 +17,7 @@ body {
   color: #373945;
   display: grid;
   margin: 0 2%;
+  background-color: #fffff9;
 }
 
 #root {
@@ -29,7 +30,16 @@ body {
   grid-row-start: 2;
   grid-row-end: 3;
   text-align: center;
-  font-size: 12px;
+  font-size: 16px;
+  margin: 5px 0;
+
+  &__year {
+    font-size: 14px;
+  }
+
+  &__link {
+    text-decoration: none;
+  }
 }
 
 .header {
@@ -46,5 +56,45 @@ body {
 
   &__loan {
     font-weight: 100;
+  }
+}
+
+.loan-header {
+  text-align: center;
+  padding: 4px 0;
+
+  &__special {
+    font-size:  18px;
+    font-weight: 700;
+  }
+}
+
+.loan-wrapper {
+  margin: 12px 0;
+  border: 1px solid #373945;
+  border-radius: 2px;
+  padding: 5px 10px;
+}
+
+.loan-description {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+  font-size: 14px;
+  &__left {
+
+  }
+
+  &__right {
+    font-weight: 700;
+  }
+}
+
+.hero {
+  margin: 0 -2%;
+  &__image {
+    display: block;
+    max-width: 100%;
+
   }
 }
