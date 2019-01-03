@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/credit-landing/precache-manifest.c9f21b2ce999efef4fe057b98ccafa08.js"
+  "/credit-landing/precache-manifest.426bfba47c110abeacd2855d74be0399.js"
 );
 
 workbox.clientsClaim();
