@@ -92,9 +92,42 @@ body {
 
 .hero {
   margin: 0 -2%;
+
+  @media (min-width: 900px) {
+    margin: 0;
+  }
   &__image {
     display: block;
     max-width: 100%;
+
+  }
+
+}
+
+@media (min-width: 900px) {
+  .main {
+    &__header {
+      grid-area: header;
+      align-self: self-start;
+    }
+
+    &__right {
+      grid-area: slider;
+    }
+
+    &__left {
+      grid-area: hero;
+    }
+
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-column-gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+            "header header" "hero slider";
+
+
 
   }
 }

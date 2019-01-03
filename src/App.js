@@ -3,7 +3,7 @@ import React, {Component, Fragment} from 'react';
 import './App.scss';
 import {CustomSlider} from "./CustomSlider";
 
-const YEARLY_INTEREST_RATE = 0.045;
+const YEARLY_INTEREST_RATE = 0.05;
 
 class App extends Component {
 
@@ -44,57 +44,61 @@ class App extends Component {
         return (
             <Fragment>
                 <div className="main">
-                    <header className="header">
+                    <header className="header main__header">
                         <span className="header__osvalds">osvalds</span>
                         <span className="header__loan">.loan</span>
                     </header>
-                    <div className="loan-header">
-                        Es vēlos saņemt <span className="loan-header__special">{this.state.amount} EUR</span>
-                    </div>
-                    <CustomSlider domain={[500, 8000]}
-                                  step={100}
-                                  values={[this.state.amount]}
-                                  onUpdate={(values) => {
-                                      this.setState({amount: values[0]})
-                                  }}/>
-                    <div className="loan-header">
-                        Uz <span
-                        className="loan-header__special">{this.state.period} </span>{this.pluralize(this.state.period, "mēnesi", "mēnešiem")}
-                    </div>
-                    <CustomSlider domain={[1, 24]}
-                                  step={1}
-                                  values={[this.state.period]}
-                                  onUpdate={(values) => {
-                                      this.setState({period: values[0]})
-                                  }}/>
-                    <div className="loan-wrapper">
-                        <div className="loan-description">
-                            <div className="loan-description__left">
-                                Ikmēneša maksājums:
+                    <div className="main__right">
+                        <div className="loan-header">
+                            Es vēlos saņemt <span className="loan-header__special">{this.state.amount} EUR</span>
+                        </div>
+                        <CustomSlider domain={[500, 8000]}
+                                      step={100}
+                                      values={[this.state.amount]}
+                                      onUpdate={(values) => {
+                                          this.setState({amount: values[0]})
+                                      }}/>
+                        <div className="loan-header">
+                            Uz <span
+                            className="loan-header__special">{this.state.period} </span>{this.pluralize(this.state.period, "mēnesi", "mēnešiem")}
+                        </div>
+                        <CustomSlider domain={[1, 24]}
+                                      step={1}
+                                      values={[this.state.period]}
+                                      onUpdate={(values) => {
+                                          this.setState({period: values[0]})
+                                      }}/>
+                        <div className="loan-wrapper">
+                            <div className="loan-description">
+                                <div className="loan-description__left">
+                                    Ikmēneša maksājums:
+                                </div>
+                                <div className="loan-description__right">
+                                    {this.monthlyPayments(this.state.amount, this.state.period).toFixed(2)} EUR
+                                </div>
                             </div>
-                            <div className="loan-description__right">
-                                {this.monthlyPayments(this.state.amount, this.state.period).toFixed(2)} EUR
+                            <div className="loan-description">
+                                <div className="loan-description__left">
+                                    Galā samaksāsi:
+                                </div>
+                                <div className="loan-description__right">
+                                    {this.totalWithInterest(this.state.amount, this.state.period).toFixed(2)} EUR
+                                </div>
+                            </div>
+                            <div className="loan-description">
+                                <div className="loan-description__left">
+                                    Es nopelnīšu
+                                </div>
+                                <div className="loan-description__right">
+                                    {this.interestPayments(this.state.amount, this.state.period).toFixed(2)} EUR
+                                </div>
                             </div>
                         </div>
-                        <div className="loan-description">
-                            <div className="loan-description__left">
-                                Galā samaksāsi:
-                            </div>
-                            <div className="loan-description__right">
-                                {this.totalWithInterest(this.state.amount, this.state.period).toFixed(2)} EUR
-                            </div>
-                        </div>
-                        <div className="loan-description">
-                            <div className="loan-description__left">
-                                Es nopelnīšu
-                            </div>
-                            <div className="loan-description__right">
-                                {this.interestPayments(this.state.amount, this.state.period).toFixed(2)} EUR
-                            </div>
-                        </div>
                     </div>
-                    <div className="hero">
-                        <img src="/img/hero.jpg" alt="Piķis nav problēma" className="hero__image"/>
+                    <div className="main__left">
+                        <div className="hero">
+                            <img src={`${process.env.PUBLIC_URL}/img/hero.jpg`} alt="Piķis nav problēma" className="hero__image"/>
+                        </div>
                     </div>
                 </div>
                 <footer className="footer">
