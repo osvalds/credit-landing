@@ -126,8 +126,9 @@ body {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
             "header header" "hero slider";
-
-
-
   }
+}
+
+.slider-wrapper {
+  padding: 0 5px;
 }
