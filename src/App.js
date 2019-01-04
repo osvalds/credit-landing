@@ -87,7 +87,7 @@ class App extends Component {
                             </div>
                             <div className="loan-description">
                                 <div className="loan-description__left">
-                                    Es nopelnīšu
+                                    Osvalds nopelnīs:
                                 </div>
                                 <div className="loan-description__right">
                                     {this.interestPayments(this.state.amount, this.state.period).toFixed(2)} EUR
